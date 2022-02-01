@@ -11,11 +11,8 @@ public class TicTacToeBoard {
     private final TicTacToeCell[][] cells;
 
     public TicTacToeBoard() {
-        this.cells = new TicTacToeCell[][]{
-            {EMPTY, EMPTY, EMPTY},
-            {EMPTY, EMPTY, EMPTY},
-            {EMPTY, EMPTY, EMPTY}
-        };
+        this.cells = new TicTacToeCell[][] { { EMPTY, EMPTY, EMPTY }, { EMPTY, EMPTY, EMPTY },
+                { EMPTY, EMPTY, EMPTY } };
     }
 
     TicTacToeBoard(TicTacToeCell[][] cells) {
@@ -32,16 +29,18 @@ public class TicTacToeBoard {
 
     public GameState checkGameState() {
         /*
-         * TODO - Based on the current state of the board, is the game still ongoing, has a player won, or is there a tie?
+         * TODO - Based on the current state of the board, is the game still ongoing,
+         * has a player won, or is there a tie?
          */
         return GameState.ONGOING;
     }
 
     public boolean isLegalMove(CellSelection selection) {
         /*
-        * TODO - Based on the current state of the board, is the input selection allowed? Note that this method does not
-        *  need to check that the row and column are in the right range. The InputParser is already doing that
-        * */
+         * TODO - Based on the current state of the board, is the input selection
+         * allowed? Note that this method does not need to check that the row and column
+         * are in the right range. The InputParser is already doing that
+         */
         return false;
     }
 
