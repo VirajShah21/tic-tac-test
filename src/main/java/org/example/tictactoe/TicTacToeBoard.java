@@ -51,12 +51,7 @@ public class TicTacToeBoard {
     }
 
     public boolean isLegalMove(CellSelection selection) {
-        /*
-         * TODO - Based on the current state of the board, is the input selection
-         * allowed? Note that this method does not need to check that the row and column
-         * are in the right range. The InputParser is already doing that
-         */
-        return false;
+        return cells[selection.row()][selection.col()] == EMPTY;
     }
 
 }
