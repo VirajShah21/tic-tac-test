@@ -28,25 +28,19 @@ public class TicTacToeBoard {
     }
 
     public GameState checkGameState() {
-        for (TicTacToeCell[] row : cells) {
-            if (row[0] == row[1] && row[1] == row[2] && row[0] != EMPTY) {
+        for (TicTacToeCell[] row : cells)
+            if (row[0] == row[1] && row[1] == row[2] && row[0] != EMPTY)
                 return row[0] == TicTacToeCell.X ? GameState.X_WINS : GameState.O_WINS;
-            }
-        }
 
-        for (int c = 0; c < 3; c++) {
-            if (cells[0][c] == cells[1][c] && cells[1][c] == cells[2][c] && cells[0][c] != EMPTY) {
+        for (int c = 0; c < 3; c++)
+            if (cells[0][c] == cells[1][c] && cells[1][c] == cells[2][c] && cells[0][c] != EMPTY)
                 return cells[0][c] == TicTacToeCell.X ? GameState.X_WINS : GameState.O_WINS;
-            }
-        }
 
-        if (cells[0][0] == cells[1][1] && cells[1][1] == cells[2][2] && cells[0][0] != EMPTY) {
+        if (cells[0][0] == cells[1][1] && cells[1][1] == cells[2][2] && cells[0][0] != EMPTY)
             return cells[0][0] == TicTacToeCell.X ? GameState.X_WINS : GameState.O_WINS;
-        }
 
-        if (cells[0][2] == cells[1][1] && cells[1][1] == cells[2][0] && cells[0][2] != EMPTY) {
+        if (cells[0][2] == cells[1][1] && cells[1][1] == cells[2][0] && cells[0][2] != EMPTY)
             return cells[0][2] == TicTacToeCell.X ? GameState.X_WINS : GameState.O_WINS;
-        }
 
         return GameState.ONGOING;
     }
