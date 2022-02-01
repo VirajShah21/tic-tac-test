@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.example.tictactoe.input.InputParser;
 import org.example.tictactoe.input.InputMoveException;
 import org.example.tictactoe.model.CellSelection;
+import org.example.tictactoe.model.TicTacToeCell;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,12 +33,16 @@ class InputParserTest {
      */
 
     private TicTacToeBoard emptyBoard;
+    private TicTacToeBoard filledBoard;
 
     private InputParser parser;
 
     @BeforeEach
     void setUp() {
         emptyBoard = new TicTacToeBoard();
+        filledBoard = new TicTacToeBoard(new TicTacToeCell[][] { { TicTacToeCell.X, TicTacToeCell.O, TicTacToeCell.X },
+                { TicTacToeCell.X, TicTacToeCell.O, TicTacToeCell.X },
+                { TicTacToeCell.O, TicTacToeCell.X, TicTacToeCell.O } });
 
         parser = new InputParser();
     }
@@ -76,5 +81,38 @@ class InputParserTest {
         assertThrows(InputMoveException.class, () -> {
             parser.parseInput("3,3", emptyBoard);
         });
+    }
+
+    @Test
+    public void testTooManyInputs() {
+        assertThrows(InputMoveException.class, () -> {
+            parser.parseInput("1,1,1", emptyBoard);
+        });
+    }
+
+    @Test
+    public void testInvalidInts() {
+        assertThrows(InputMoveException.class, () -> {
+            parser.parseInput("a,1", emptyBoard);
+        });
+
+        assertThrows(InputMoveException.class, () -> {
+            parser.parseInput("1,2.0", emptyBoard);
+        });
+    }
+
+    @Test
+    public void testFilledSquare() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                String input = String.format("%d,%d", i, j);
+                try {
+                    parser.parseInput(input, filledBoard);
+                    fail("Parser did not throw an exception");
+                } catch (InputMoveException e) {
+                    // expected
+                }
+            }
+        }
     }
 }
