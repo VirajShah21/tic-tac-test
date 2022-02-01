@@ -42,7 +42,12 @@ public class TicTacToeBoard {
         if (cells[0][2] == cells[1][1] && cells[1][1] == cells[2][0] && cells[0][2] != EMPTY)
             return cells[0][2] == TicTacToeCell.X ? GameState.X_WINS : GameState.O_WINS;
 
-        return GameState.ONGOING;
+        for (TicTacToeCell[] row : cells)
+            for (TicTacToeCell cell : row)
+                if (cell == EMPTY)
+                    return GameState.ONGOING;
+
+        return GameState.TIE;
     }
 
     public boolean isLegalMove(CellSelection selection) {

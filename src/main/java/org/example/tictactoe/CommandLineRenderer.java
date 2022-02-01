@@ -2,20 +2,40 @@ package org.example.tictactoe;
 
 import java.io.PrintStream;
 
+import org.example.tictactoe.model.TicTacToeCell;
+
 public class CommandLineRenderer {
 
     private final PrintStream output;
     static final String BOARD_BORDER = "============";
+
     public CommandLineRenderer(PrintStream output) {
         this.output = output;
     }
 
     public void renderBoard(TicTacToeBoard board) {
-        /*
-        * TODO - This function should use the "output" PrintStream to print a command line representation of the board.
-        *        Check out how the BoardRendererTest JUnit test expects it to be rendered. This method should not call
-        *        renderMessage or renderError. Just directly print to this.output
-        * */
+        output.println(BOARD_BORDER);
+        TicTacToeCell[][] cells = board.getCells();
+        for (TicTacToeCell[] row : cells) {
+            for (int cellIndex = 0; cellIndex < row.length; cellIndex++) {
+                switch (row[cellIndex]) {
+                    case X:
+                        output.print(" X ");
+                        break;
+                    case O:
+                        output.print(" O ");
+                        break;
+                    case EMPTY:
+                        output.print("   ");
+                        break;
+                }
+                if (cellIndex < 2)
+                    output.print("|");
+            }
+            output.println();
+        }
+        output.println(BOARD_BORDER);
+
     }
 
     public void renderMessage(String message) {
